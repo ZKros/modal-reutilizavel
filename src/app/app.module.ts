@@ -3,7 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { ComponentsModule } from './components/components.module';
+import { ModalService } from './components/modal/service/modal.service';
+
 
 @NgModule({
 	declarations: [
@@ -12,9 +13,8 @@ import { ComponentsModule } from './components/components.module';
 	imports: [
 		BrowserModule,
 		RouterModule,
-		ComponentsModule
 	],
-	providers: [],
+	providers: [ModalService],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }
