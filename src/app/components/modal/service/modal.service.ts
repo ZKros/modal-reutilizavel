@@ -1,20 +1,43 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
-
+import { Subject } from 'rxjs';
+import { ModalComponent } from '../modal.component';
 
 @Injectable({
 	providedIn: 'root'
 })
 export class ModalService {
-	public dialogObservable$!: Observable<any>;
-	private dialogSubject: Subject<any> = new Subject<any>();
+	private modals: ModalComponent[] = [];
+	protected onClosed = new Subject<any>();
+	constructor() { }
 
-	constructor(private modal: MatDialog) {
-		this.dialogObservable$ = this.dialogSubject.asObservable();
+	open(id: string) {
+		const modal = this.modals.find(x => x.id === id);
+
+		if (!modal) {
+			throw new Error(`modal '${id}' não foi encontrado`);
+		}
+
+		modal.open();
 	}
 
+	close(data?: any) {
+		const modal = this.modals.find(x => x.isOpen);
 
-	create() {
+		modal?.close();
+		this.onClosed.next(data);
+	}
 
+	beforeClosed = (): Subject<any> => this.onClosed;
+
+	add(modal: ModalComponent) {
+		if (!modal.id || this.modals.find(x => x.id === modal.id)) {
+			throw new Error('Modal não tem id Único');
+		}
+
+		this.modals.push(modal);
+	}
+
+	remove(modal: ModalComponent) {
+		this.modals = this.modals.filter(x => x === modal);
 	}
 }

@@ -1,20 +1,24 @@
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
-import { ModalService } from './components/modal/service/modal.service';
+import { ModalModule } from './components/modal/modal.module';
+import { TesteModule } from './teste/teste.module';
 
 
 @NgModule({
-	declarations: [
-		AppComponent
-	],
 	imports: [
 		BrowserModule,
-		RouterModule,
+		BrowserAnimationsModule,
+		FormsModule,
+		ModalModule,
+		TesteModule,
+		ReactiveFormsModule
+
 	],
-	providers: [ModalService],
+	declarations: [AppComponent],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }

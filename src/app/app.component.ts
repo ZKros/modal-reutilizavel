@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ComponentRef, ViewChild, ViewContainerRef } from '@angular/core';
 import { ModalService } from './components/modal/service/modal.service';
+import { TesteComponent } from './teste/teste.component';
+
 
 @Component({
 	selector: 'app-root',
@@ -7,9 +9,25 @@ import { ModalService } from './components/modal/service/modal.service';
 	styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-	title = 'modal-reutilizavel';
-	constructor(private service: ModalService) { }
-	openDialog() {
-		this.service.create()
+
+	@ViewChild("viewContainerRef", { read: ViewContainerRef }) vcr!: ViewContainerRef;
+	ref!: ComponentRef<TesteComponent>
+	constructor(private modal: ModalService) {
+
+	}
+
+	openModal() {
+		this.modal.open()
+
+		this.modal.beforeClosed().subscribe((res) => console.log(res))
+	}
+
+	addChild() {
+		this.ref = this.vcr.createComponent(TesteComponent)
+	}
+
+	removeChild() {
+		const index = this.vcr.indexOf(this.ref.hostView)
+		if (index != -1) this.vcr.remove(index)
 	}
 }

@@ -1,16 +1,18 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { ModalComponent } from './modal.component';
-import { MatDialogModule } from '@angular/material/dialog';
-
-const components = [
-	ModalComponent,
-
-]
 
 @NgModule({
-	imports: [CommonModule, MatDialogModule],
-	declarations: [components],
-	exports: [components]
+	declarations: [
+		ModalComponent,
+	],
+	imports: [
+		CommonModule,
+	],
+	exports: [
+		ModalComponent,
+	]
 })
-export class ModalModule { }
+export class ModalModule {
+
+}

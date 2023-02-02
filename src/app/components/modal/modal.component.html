@@ -1,3 +1,6 @@
-<div>
-	<h1>Ola Mundo</h1>
-</div>
+<ng-container  *ngIf="isOpen">
+  <div class="modal" @modal [class]="size">
+    <ng-content></ng-content>
+  </div>
+  <div @overlay class="overlay"></div>
+</ng-container>

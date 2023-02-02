@@ -1,0 +1,1 @@
+export declare type ModalSize = 'sm' | 'md' | 'lg' 
