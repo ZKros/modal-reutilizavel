@@ -1,12 +1,12 @@
 import {
 	animate, style, transition, trigger
 } from '@angular/animations';
-import { Component, ElementRef, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnDestroy, OnInit } from '@angular/core';
 import { ModalService } from './service/modal.service';
 import { ModalSize } from './types/size-types';
 
 @Component({
-	selector: 'app-modal',
+	selector: 'modal',
 	templateUrl: 'modal.component.html',
 	styleUrls: ['modal.component.scss'],
 	animations: [
@@ -30,33 +30,37 @@ import { ModalSize } from './types/size-types';
 		]),
 	]
 })
-export class ModalComponent implements OnInit {
+export class ModalComponent implements OnInit, OnDestroy {
 	@Input() size: ModalSize = 'md'
-	@Input() id?: string;
+	@Input() id?: number;
 	public isOpen = false;
-	private element: any;
+	private el: any;
 
-	constructor(private modal: ModalService, private el: ElementRef) {
-		this.element = el.nativeElement;
+	constructor(private modal: ModalService, element: ElementRef) {
+		this.el = element.nativeElement
 	}
+
 
 	ngOnInit() {
 		this.modal.add(this);
-		console.log(this.modal)
+
+		document.body.appendChild(this.el);
 	}
 
 	ngOnDestroy() {
 		this.modal.remove(this);
-		this.element.remove()
+		this.el.remove();
 	}
 
 	open() {
-		this.element.style.display = 'block';
+		this.el.style.display = 'block';
+		document.body.classList.add('modal-open');
 		this.isOpen = true;
 	}
 
 	close() {
-		this.element.style.display = 'none';
+		this.el.style.display = 'none';
+		document.body.classList.remove('modal-open');
 		this.isOpen = false;
 	}
 }

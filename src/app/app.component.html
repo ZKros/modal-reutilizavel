@@ -1,7 +1,12 @@
-<button (click)="openModal()">Mostrar modal</button>
+<div>
+  <div>
+    <h1>Modal</h1>
+    <button (click)="open(1)">Open Modal 1</button>
+  </div>
 
-<ng-template #viewContainerRef>
-  <app-modal [size]="'lg'">
-    <app-teste></app-teste>
-  </app-modal>
-</ng-template>
+  <modal [id]="1" [size]="'sm'">
+    <ng-template #component>
+      <app-teste></app-teste>
+    </ng-template>
+  </modal>
+</div>
