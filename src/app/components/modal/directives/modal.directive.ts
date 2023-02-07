@@ -7,7 +7,6 @@ import { ModalTitleDirective } from './modal-title.directive';
 	selector: '[appModal]'
 })
 export class ModalDirective {
-
 	@ContentChild(ModalContentDirective)
 	content!: ModalContentDirective
 

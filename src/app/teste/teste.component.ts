@@ -11,7 +11,7 @@ import { IdModal } from '../shared/constantes/modal-enum';
 export class TesteComponent {
 	public form!: FormGroup
 	public id = IdModal
-	constructor(private modal: ModalService, private fb: FormBuilder) {
+	constructor(private modalService: ModalService, private fb: FormBuilder) {
 
 	}
 	ngOnInit() {
@@ -20,11 +20,11 @@ export class TesteComponent {
 		})
 	}
 	open(id: string) {
-		this.modal.open(id)
+		this.modalService.open(id)
 	}
 
 	close(data?: string) {
-		this.modal.close(data)
+		this.modalService.close(data)
 	}
 
 

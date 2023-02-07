@@ -8,11 +8,7 @@ import { ModalModule } from '../components/modal/modal.module';
 
 @NgModule({
 	declarations: [TesteComponent],
-	imports: [
-		CommonModule,
-		ModalModule,
-		ReactiveFormsModule
-	],
+	imports: [CommonModule, ModalModule, ReactiveFormsModule],
 	exports: [TesteComponent]
 })
 export class TesteModule { }
