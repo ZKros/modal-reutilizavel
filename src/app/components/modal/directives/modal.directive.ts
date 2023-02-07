@@ -7,13 +7,12 @@ import { ModalTitleDirective } from './modal-title.directive';
 	selector: '[appModal]'
 })
 export class ModalDirective {
-	@Input() title: string = ""
 
 	@ContentChild(ModalContentDirective)
 	content!: ModalContentDirective
 
 	@ContentChild(ModalTitleDirective)
-	customTitle!: ModalTitleDirective
+	title!: ModalTitleDirective
 
 	@ContentChild(ModalHeaderDirective)
 	customHeader!: ModalHeaderDirective
