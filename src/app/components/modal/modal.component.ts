@@ -1,7 +1,8 @@
 import {
 	animate, style, transition, trigger
 } from '@angular/animations';
-import { Component, ElementRef, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, ContentChildren, ElementRef, Input, OnDestroy, OnInit, QueryList } from '@angular/core';
+import { ModalDirective } from './directives/modal.directive';
 import { ModalService } from './service/modal.service';
 import { ModalSize } from './types/size-type';
 
@@ -33,22 +34,25 @@ import { ModalSize } from './types/size-type';
 export class ModalComponent implements OnInit, OnDestroy {
 	@Input() size: ModalSize = 'md'
 	@Input() id?: string;
+
+	@ContentChildren(ModalDirective)
+	public modals!: QueryList<ModalDirective>
 	public isOpen = false;
 	private el: any;
 
-	constructor(private modal: ModalService, element: ElementRef) {
+	constructor(protected modalService: ModalService, element: ElementRef) {
 		this.el = element.nativeElement
 	}
 
 
 	ngOnInit() {
-		this.modal.add(this);
+		this.modalService.add(this);
 
 		document.body.appendChild(this.el);
 	}
 
 	ngOnDestroy() {
-		this.modal.remove(this);
+		this.modalService.remove(this);
 		this.el.remove();
 	}
 
