@@ -1,15 +1,15 @@
 <div>
   <div>
     <h1>Modal</h1>
-    <button (click)="open(id.modal_1)">Open Modal 1</button>
-    <button (click)="open(id.modal_2)">Open Modal 2</button>
+    <button (click)="open('modal-1')">Open Modal 1</button>
+    <button (click)="open('modal-2')">Open Modal 2</button>
   </div>
 
-  <modal [id]="1" [size]="'lg'">
+  <modal id="modal-1" [size]="'lg'">
     <ng-template #component> </ng-template>
   </modal>
 
-  <modal #modal [id]="2" >
+  <modal #modal id="modal-2">
     <ng-template #component2>
       <app-zero></app-zero>
     </ng-template>

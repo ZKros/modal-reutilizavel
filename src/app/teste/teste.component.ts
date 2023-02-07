@@ -19,7 +19,7 @@ export class TesteComponent {
 			teste: ''
 		})
 	}
-	open(id: number) {
+	open(id: string) {
 		this.modal.open(id)
 	}
 

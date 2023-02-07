@@ -1,4 +1,4 @@
-import { Injectable, Type } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { ModalComponent } from '../modal.component';
 
@@ -11,8 +11,7 @@ export class ModalService {
 
 	constructor() { }
 
-	open(id: number) {
-		console.log(id)
+	open(id: string) {
 		const modal = this.modals.find(x => x.id === id);
 
 		if (!modal) {

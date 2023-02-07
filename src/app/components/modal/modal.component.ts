@@ -32,7 +32,7 @@ import { ModalSize } from './types/size-type';
 })
 export class ModalComponent implements OnInit, OnDestroy {
 	@Input() size: ModalSize = 'md'
-	@Input() id?: number;
+	@Input() id?: string;
 	public isOpen = false;
 	private el: any;
 
