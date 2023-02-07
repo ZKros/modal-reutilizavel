@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { ModalModule } from './components/modal/modal.module';
 import { TesteModule } from './teste/teste.module';
+import { ZeroComponent } from './zero/zero.component';
 
 
 @NgModule({
@@ -18,7 +19,7 @@ import { TesteModule } from './teste/teste.module';
 		ReactiveFormsModule
 
 	],
-	declarations: [AppComponent],
+	declarations: [AppComponent, ZeroComponent],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }

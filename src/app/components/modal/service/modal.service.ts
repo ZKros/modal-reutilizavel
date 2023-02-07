@@ -12,6 +12,7 @@ export class ModalService {
 	constructor() { }
 
 	open(id: number) {
+		console.log(id)
 		const modal = this.modals.find(x => x.id === id);
 
 		if (!modal) {

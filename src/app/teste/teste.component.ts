@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ModalService } from '../components/modal/service/modal.service';
+import { IdModal } from '../shared/constantes/modal-enum';
 
 @Component({
 	selector: 'app-teste',
@@ -9,7 +10,7 @@ import { ModalService } from '../components/modal/service/modal.service';
 })
 export class TesteComponent {
 	public form!: FormGroup
-
+	public id = IdModal
 	constructor(private modal: ModalService, private fb: FormBuilder) {
 
 	}
@@ -17,6 +18,9 @@ export class TesteComponent {
 		this.form = this.fb.group({
 			teste: ''
 		})
+	}
+	open(id: number) {
+		this.modal.open(id)
 	}
 
 	close(data?: string) {

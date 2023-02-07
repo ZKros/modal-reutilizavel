@@ -3,7 +3,7 @@ import {
 } from '@angular/animations';
 import { Component, ElementRef, Input, OnDestroy, OnInit } from '@angular/core';
 import { ModalService } from './service/modal.service';
-import { ModalSize } from './types/size-types';
+import { ModalSize } from './types/size-type';
 
 @Component({
 	selector: 'modal',
@@ -16,7 +16,7 @@ import { ModalSize } from './types/size-types';
 				animate('250ms', style({ opacity: .5 })),
 			]),
 			transition(':leave', [
-				animate('500ms', style({ opacity: 0 }))
+				animate('250ms', style({ opacity: 0 }))
 			])
 		]),
 		trigger('modal', [
@@ -25,7 +25,7 @@ import { ModalSize } from './types/size-types';
 				animate('500ms', style({ top: '50%' })),
 			]),
 			transition(':leave', [
-				animate('500ms', style({ top: -999 }))
+				animate('250ms', style({ top: -999 }))
 			])
 		]),
 	]

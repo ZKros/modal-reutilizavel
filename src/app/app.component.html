@@ -1,12 +1,17 @@
 <div>
   <div>
     <h1>Modal</h1>
-    <button (click)="open(1)">Open Modal 1</button>
+    <button (click)="open(id.modal_1)">Open Modal 1</button>
+    <button (click)="open(id.modal_2)">Open Modal 2</button>
   </div>
 
-  <modal [id]="1" [size]="'sm'">
-    <ng-template #component>
-      <app-teste></app-teste>
+  <modal [id]="1" [size]="'lg'">
+    <ng-template #component> </ng-template>
+  </modal>
+
+  <modal #modal [id]="2" >
+    <ng-template #component2>
+      <app-zero></app-zero>
     </ng-template>
   </modal>
 </div>
