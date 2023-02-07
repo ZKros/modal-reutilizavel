@@ -2,84 +2,85 @@
 
 É possível utilizar o modal conforme abaixo.
 
-Para utilizar é necessário injetar o serviço <b>ModalService</b>
+Para utilizar é necessário injetar o serviço `ModalService`.
 
-Selector: <b>app-modal</b>
+Selector: `app-modal`
 
-Module: <b>ModalModule</b>
+Module: `ModalModule`
 
 Os Parâmetros abaixo são aplicados no HTML ao app-modal caso Modal seja adicionado via HTML.
 
 Parâmetros:
 
-<code>
+```Typescript
 //app-modal
 id: string;
 size: ModalSize = 'md'
-</code>
+```
 
 Types:
 
-<code>
+```Typescript
 declare type Size = 'sm' | 'md' | 'lg'
-</code>
+```
 
 Funções:
 
-<code>
+```Typescript
 open(id: string): void
 close(data?: any): void
 beforeClosed(): Subject<any>;
 add(modal: ModalComponent): void
 remove(modal: ModalComponent): void
-</code>
+```
 
 Exemplo de utilização via HTML
 
-<code>
+```HTML
 <div>
   <div>
 	<h1> Modal <h1>
 	<button (click)="open('modal-1')"> Abrir Modal</button>
 	</div>
-	
+
 	<app-modal id='modal-1' [size]="'lg'">
 	<ng-template #component> </ng-template>
 	</app-modal>
 </div>
 </code>
+```
 
-<code>
+```Typescript
 export class PaiComponent{
 	public ref!: ComponentRef<FilhoComponent>
 	@ViewChild("component", {read: ViewContainerRef}) vcr!: ViewContainerRef;
 
-  constructor(private modal: ModalService) {}
+constructor(private modal: ModalService) {}
 
   open(id: string){
-   this.modal.open(id)
+    this.modal.open(id)
+    this.ref = this.vcr.createComponent(FilhoComponent)
 
-	 this.ref = this.vcr.createComponent(FilhoComponent)
+    this.modal.beforeClosed().subscribe((res) => {
+    	console.log(res);
+    	this.removeComponent();
+    })
+  }
 
-	 this.modal.beforeClosed().subscribe((res) =>{
-		 console.log(res);
-		 this.removeComponent();
-	 })
-	}
+  removeComponent(){
+    const index = this.vcr.indexOf(this.ref.hostView)
 
-	removeComponent(){
-	 const index = this.vcr.indexOf(this.ref.hostView)
+    if(index != 1){
+    this.vcr.remove(index)
+    }
+  }
 
-	 if(index != 1){
-		this.vcr.remove(index)
-	 }
-	}
 }
-</code>
+```
 
-Componente do Modal há ser criado na chamado no open()
+Componente do Modal há ser criado na chamado no `open()`
 
-<code>
+```Typescript
 @Component({
 	selector: 'app-modal',
 	template: `
@@ -111,4 +112,4 @@ Componente do Modal há ser criado na chamado no open()
 		]),
 	]
 })
-</code>
+```
