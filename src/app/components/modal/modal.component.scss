@@ -18,13 +18,15 @@
 
   .modal__item {
     .modal__header {
+      color: #184082;
+
       position: relative;
       bottom: 15px;
 
       .close {
-        color: white;
+        color: #acacac !important;
         border: none;
-        background-color: #24407f;
+        background-color: none;
         position: relative;
         float: right;
         cursor: pointer;
@@ -47,13 +49,13 @@
 
 .sm {
   width: 540px;
-  max-height: 80%;
+  max-height: 80vh;
 }
 .md {
   width: 720px;
-  max-height: 80%;
+  max-height: 80vh;
 }
 .lg {
   width: 960px;
-  max-height: 80%;
+  max-height: 80vh;
 }

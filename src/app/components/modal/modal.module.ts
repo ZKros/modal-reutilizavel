@@ -6,23 +6,23 @@ import { ModalTitleDirective } from './directives/modal-title.directive';
 import { ModalDirective } from './directives/modal.directive';
 import { ModalComponent } from './modal.component';
 
+const directive = [
+	ModalDirective,
+	ModalHeaderDirective,
+	ModalTitleDirective,
+	ModalContentDirective
+]
 @NgModule({
 	declarations: [
 		ModalComponent,
-		ModalDirective,
-		ModalHeaderDirective,
-		ModalTitleDirective,
-		ModalContentDirective
+		directive
 	],
 	imports: [
 		CommonModule,
 	],
 	exports: [
 		ModalComponent,
-		ModalDirective,
-		ModalHeaderDirective,
-		ModalTitleDirective,
-		ModalContentDirective
+		directive
 	]
 })
 export class ModalModule {
