@@ -39,42 +39,54 @@ Exemplo de utilização via HTML
 ```HTML
 <div>
   <div>
-	<h1> Modal <h1>
-	<button (click)="open('modal-1')"> Abrir Modal</button>
-	</div>
+    <h1>Modal</h1>
+    <button (click)="open('modal-1')">Open Modal 1</button>
+  </div>
 
-	<app-modal id='modal-1' [size]="'lg'">
-	<ng-template #component> </ng-template>
-	</app-modal>
+	<!--Default Header-->
+  <app-modal id="modal-1" [size]="'lg'">
+    <modal>
+      <ng-template appModalTitle>
+        <h1>Modal Teste</h1>
+        <i class="ri-home-fill"></i>
+      </ng-template>
+
+      <ng-template appModalContent>
+        <app-filhoComponent></app-filhoComponent>
+      </ng-template>
+    </modal>
+  </app-modal>
+
+	<!--Custom Header-->
+	  <app-modal id="modal-1" [size]="'lg'">
+    <modal>
+      <ng-template appModalHeader>
+				<header>
+        <h1>Modal Teste</h1>
+        <i class="ri-home-fill"></i>
+				 </header>
+      </ng-template>
+
+      <ng-template appModalContent>
+        <app-filhoComponent></app-filhoComponent>
+      </ng-template>
+    </modal>
+  </app-modal>
 </div>
-</code>
 ```
 
 ```Typescript
 export class PaiComponent{
-	public ref!: ComponentRef<FilhoComponent>
-	@ViewChild("component", {read: ViewContainerRef}) vcr!: ViewContainerRef;
 
-constructor(private modal: ModalService) {}
+  constructor(private modal: ModalService) {}
 
   open(id: string){
     this.modal.open(id)
-    this.ref = this.vcr.createComponent(FilhoComponent)
 
     this.modal.beforeClosed().subscribe((res) => {
     	console.log(res);
-    	this.removeComponent();
     })
   }
-
-  removeComponent(){
-    const index = this.vcr.indexOf(this.ref.hostView)
-
-    if(index != 1){
-    this.vcr.remove(index)
-    }
-  }
-
 }
 ```
 
@@ -84,12 +96,32 @@ Componente do Modal há ser criado na chamado no `open()`
 @Component({
 	selector: 'app-modal',
 	template: `
-	<ng-container *ngIf="isOpen">
-  <div class="modal" @modal [class]="size">
-    <ng-content></ng-content>
-  </div>
+<ng-container *ngIf="isOpen">
+  <section class="modal" @modal>
+    <div class="modal__item" [class]="size" *ngFor="let modal of modals">
+      <ng-container
+        [ngTemplateOutlet]="modal?.customHeader?.templateRef || defaultHeader"
+      ></ng-container>
+
+      <ng-template #defaultHeader>
+        <header class="modal__header">
+          <button class="close" (click)="modalService.close()">
+            <i class="ri-close-line"></i>
+          </button>
+          <ng-container *ngTemplateOutlet="modal.title.templateRef">
+          </ng-container>
+        </header>
+      </ng-template>
+
+      <div class="modal__content">
+        <ng-container
+          *ngTemplateOutlet="modal.content.templateRef"
+        ></ng-container>
+      </div>
+    </div>
+  </section>
   <div @overlay class="overlay"></div>
-  </ng-container>
+</ng-container>
 	`,
 	animations: [
 		trigger('overlay', [

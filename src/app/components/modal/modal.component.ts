@@ -7,7 +7,7 @@ import { ModalService } from './service/modal.service';
 import { ModalSize } from './types/size-type';
 
 @Component({
-	selector: 'modal',
+	selector: 'app-modal',
 	templateUrl: 'modal.component.html',
 	styleUrls: ['modal.component.scss'],
 	animations: [

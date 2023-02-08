@@ -1,20 +1,26 @@
 <ng-container *ngIf="isOpen">
-  <div class="modal" @modal [class]="size" *ngFor="let modal of modals">
-    <ng-container
-      [ngTemplateOutlet]="modal?.customHeader?.templateRef || defaultHeader"
-    ></ng-container>
+  <section class="modal" @modal>
+    <div class="modal__item" [class]="size" *ngFor="let modal of modals">
+      <ng-container
+        [ngTemplateOutlet]="modal?.customHeader?.templateRef || defaultHeader"
+      ></ng-container>
 
-    <ng-template #defaultHeader>
-      <header>
-        <ng-container *ngTemplateOutlet="modal.title.templateRef">
-        </ng-container>
-        <button class="close" (click)="modalService.close()">
-          <i class="ri-close-line"></i>
-        </button>
-      </header>
-    </ng-template>
+      <ng-template #defaultHeader>
+        <header class="modal__header">
+          <button class="close" (click)="modalService.close()">
+            <i class="ri-close-line"></i>
+          </button>
+          <ng-container *ngTemplateOutlet="modal.title.templateRef">
+          </ng-container>
+        </header>
+      </ng-template>
 
-    <ng-container *ngTemplateOutlet="modal.content.templateRef"></ng-container>
-  </div>
+      <div class="modal__content">
+        <ng-container
+          *ngTemplateOutlet="modal.content.templateRef"
+        ></ng-container>
+      </div>
+    </div>
+  </section>
   <div @overlay class="overlay"></div>
 </ng-container>

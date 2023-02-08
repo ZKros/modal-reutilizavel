@@ -5,13 +5,31 @@
     <button (click)="open('modal-2')">Open Modal 2</button>
   </div>
 
-  <modal id="modal-1" [size]="'lg'">
-    <ng-template #component> </ng-template>
-  </modal>
+  <app-modal id="modal-1" [size]="'lg'">
+    <modal>
+      <ng-template appModalTitle>
+        <h1>Modal Teste</h1>
+        <i class="ri-home-fill"></i>
+      </ng-template>
 
-  <modal #modal id="modal-2">
-    <ng-template #component2>
-      <app-zero></app-zero>
-    </ng-template>
-  </modal>
+      <ng-template appModalContent>
+        <app-teste></app-teste>
+      </ng-template>
+    </modal>
+  </app-modal>
+
+  <app-modal id="modal-2" [size]="'lg'">
+    <modal>
+      <ng-template appModalHeader>
+        <header>
+          <h1>Modal Teste</h1>
+          <i class="ri-home-fill"></i>
+        </header>
+      </ng-template>
+
+      <ng-template appModalContent>
+        <app-teste></app-teste>
+      </ng-template>
+    </modal>
+  </app-modal>
 </div>

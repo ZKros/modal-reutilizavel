@@ -15,6 +15,22 @@
   background: #fff;
 
   z-index: 10;
+
+  .modal__item {
+    .modal__header {
+      position: relative;
+      bottom: 15px;
+
+      .close {
+        color: white;
+        border: none;
+        background-color: #24407f;
+        position: relative;
+        float: right;
+        cursor: pointer;
+      }
+    }
+  }
 }
 
 .overlay {
@@ -40,13 +56,4 @@
 .lg {
   width: 960px;
   max-height: 80%;
-}
-
-.close {
-  color: white;
-  border: none;
-  background-color: #24407f;
-  position: relative;
-  float: right;
-  cursor: pointer;
 }
