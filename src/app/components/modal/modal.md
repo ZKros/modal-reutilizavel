@@ -61,10 +61,10 @@ Exemplo de utilização via HTML
 	  <app-modal id="modal-1" [size]="'lg'">
     <modal>
       <ng-template appModalHeader>
-				<header>
+			<header>
         <h1>Modal Teste</h1>
         <i class="ri-home-fill"></i>
-				 </header>
+			</header>
       </ng-template>
 
       <ng-template appModalContent>
