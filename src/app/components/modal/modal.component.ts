@@ -4,7 +4,7 @@ import {
 import { Component, ContentChildren, ElementRef, Input, OnDestroy, OnInit, QueryList } from '@angular/core';
 import { ModalDirective } from './directives/modal.directive';
 import { ModalService } from './service/modal.service';
-import { ModalSize } from './types/size-type';
+import { ModalSize } from './types/size.type';
 
 @Component({
 	selector: 'app-modal',
@@ -47,8 +47,7 @@ export class ModalComponent implements OnInit, OnDestroy {
 
 	ngOnInit() {
 		this.modalService.add(this);
-
-		document.body.appendChild(this.el);
+		document.body.appendChild(this.el)
 	}
 
 	ngOnDestroy() {

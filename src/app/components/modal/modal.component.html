@@ -1,26 +1,37 @@
 <ng-container *ngIf="isOpen">
-  <section class="modal" @modal>
-    <div class="modal__item" [class]="size" *ngFor="let modal of modals">
-      <ng-container
-        [ngTemplateOutlet]="modal?.customHeader?.templateRef || defaultHeader"
-      ></ng-container>
+	<section class="modal" @modal>
+		<div class="modal__item" [class]="size" *ngFor="let modal of modals">
+			<ng-container
+				[ngTemplateOutlet]="modal?.customHeader?.templateRef || defaultHeader"
+			></ng-container>
 
-      <ng-template #defaultHeader>
-        <header class="modal__header">
-          <button class="close" (click)="modalService.close()">
-            <i class="ri-close-line"></i>
-          </button>
-          <ng-container *ngTemplateOutlet="modal.title.templateRef">
-          </ng-container>
-        </header>
-      </ng-template>
+			<ng-template #defaultHeader>
+				<header class="modal__header">
+					<h5>
+						<ng-container *ngIf="modal.iconPosition === 'left'; else right">
+							<i [class]="modal?.icon"></i>
+							{{ modal?.title }}
+						</ng-container>
+						
+						<ng-template #right>
+							{{ modal?.title }}
+							<i [class]="modal?.icon"></i>
+						</ng-template>
+					</h5>
+					<small> {{ modal?.subTitle }} </small>
 
-      <div class="modal__content">
-        <ng-container
-          *ngTemplateOutlet="modal.content.templateRef"
-        ></ng-container>
-      </div>
-    </div>
-  </section>
-  <div @overlay class="overlay"></div>
+					<button class="close" (click)="modalService.close()">
+						<i class="ri-close-line"></i>
+					</button>
+				</header>
+			</ng-template>
+
+			<div class="modal__content">
+				<ng-container
+					*ngTemplateOutlet="modal.content.templateRef"
+				></ng-container>
+			</div>
+		</div>
+	</section>
+	<div @overlay class="overlay"></div>
 </ng-container>

@@ -3,9 +3,7 @@
   top: 50%;
   left: 50%;
 
-  overflow-y: scroll;
-
-  padding: 24px;
+  padding: 34px 5px 34px 10px;
 
   box-shadow: 0 2px 8px #333;
   border-radius: 8px;
@@ -18,19 +16,45 @@
 
   .modal__item {
     .modal__header {
-      color: #184082;
-
       position: relative;
       bottom: 15px;
+      left: 10px;
+
+      h5 {
+        color: #184082;
+        margin-bottom: 0;
+        font-size: 1.1rem;
+        font-weight: bold;
+
+        i {
+          position: relative;
+          top: 3px;
+        }
+      }
+
+      small {
+        color: #acacac;
+      }
 
       .close {
+        background: none;
         color: #acacac !important;
+
         border: none;
-        background-color: none;
+
         position: relative;
         float: right;
+        bottom: 20px;
+        right: 23px;
+
+        font-size: 20px;
+
         cursor: pointer;
       }
+    }
+
+    .modal__content {
+      overflow-y: scroll;
     }
   }
 }
@@ -49,13 +73,20 @@
 
 .sm {
   width: 540px;
+  max-width: 80vw;
   max-height: 80vh;
 }
 .md {
   width: 720px;
+  max-width: 80vw;
   max-height: 80vh;
 }
 .lg {
   width: 960px;
+  max-width: 80vw;
   max-height: 80vh;
+}
+
+body.modal-open {
+  overflow: hidden;
 }

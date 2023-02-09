@@ -8,7 +8,8 @@ Selector: `app-modal`
 
 Module: `ModalModule`
 
-Os Parâmetros abaixo são aplicados no HTML ao app-modal caso Modal seja adicionado via HTML.
+Os Parâmetros abaixo são aplicados no HTML ao app-modal caso Modal seja
+adicionado via HTML.
 
 Parâmetros:
 
@@ -22,6 +23,7 @@ Types:
 
 ```Typescript
 declare type Size = 'sm' | 'md' | 'lg'
+declare type IconPosition = 'right' | 'left'
 ```
 
 Funções:
@@ -44,12 +46,13 @@ Exemplo de utilização via HTML
   </div>
 
 	<!--Default Header-->
-  <app-modal id="modal-1" [size]="'lg'">
-    <modal>
-      <ng-template appModalTitle>
-        <h1>Modal Teste</h1>
-        <i class="ri-home-fill"></i>
-      </ng-template>
+  <app-modal id="modal-1" size="lg">
+    <modal
+		  title="Titulo"
+			subTitle="Sub Titulo"
+			icon="Icon"
+			iconPosition="Direita ou Esquerda"
+		>
 
       <ng-template appModalContent>
         <app-filhoComponent></app-filhoComponent>
@@ -58,12 +61,14 @@ Exemplo de utilização via HTML
   </app-modal>
 
 	<!--Custom Header-->
-	  <app-modal id="modal-1" [size]="'lg'">
+	  <app-modal id="modal-1" size="lg">
     <modal>
       <ng-template appModalHeader>
 			<header>
-        <h1>Modal Teste</h1>
-        <i class="ri-home-fill"></i>
+        <h1>
+		 		Modal Teste
+		   	<i class="ri-home-fill"></i>
+				</h1>
 			</header>
       </ng-template>
 
@@ -97,30 +102,41 @@ Componente do Modal há ser criado na chamado no `open()`
 	selector: 'app-modal',
 	template: `
 <ng-container *ngIf="isOpen">
-  <section class="modal" @modal>
-    <div class="modal__item" [class]="size" *ngFor="let modal of modals">
-      <ng-container
-        [ngTemplateOutlet]="modal?.customHeader?.templateRef || defaultHeader"
-      ></ng-container>
+	<section class="modal" @modal>
+		<div class="modal__item" [class]="size" *ngFor="let modal of modals">
+			<ng-container
+				[ngTemplateOutlet]="modal?.customHeader?.templateRef || defaultHeader"
+			></ng-container>
 
-      <ng-template #defaultHeader>
-        <header class="modal__header">
-          <button class="close" (click)="modalService.close()">
-            <i class="ri-close-line"></i>
-          </button>
-          <ng-container *ngTemplateOutlet="modal.title.templateRef">
-          </ng-container>
-        </header>
-      </ng-template>
+			<ng-template #defaultHeader>
+				<header class="modal__header">
+					<h5>
+						<ng-container *ngIf="modal.iconPosition === 'left'; else right">
+							<i [class]="modal?.icon"></i>
+							{{ modal?.title }}
+						</ng-container>
 
-      <div class="modal__content">
-        <ng-container
-          *ngTemplateOutlet="modal.content.templateRef"
-        ></ng-container>
-      </div>
-    </div>
-  </section>
-  <div @overlay class="overlay"></div>
+						<ng-template #right>
+							{{ modal?.title }}
+							<i [class]="modal?.icon"></i>
+						</ng-template>
+					</h5>
+					<small> {{ modal?.subTitle }} </small>
+
+					<button class="close" (click)="modalService.close()">
+						<i class="ri-close-line"></i>
+					</button>
+				</header>
+			</ng-template>
+
+			<div class="modal__content">
+				<ng-container
+					*ngTemplateOutlet="modal.content.templateRef"
+				></ng-container>
+			</div>
+		</div>
+	</section>
+	<div @overlay class="overlay"></div>
 </ng-container>
 	`,
 	animations: [
