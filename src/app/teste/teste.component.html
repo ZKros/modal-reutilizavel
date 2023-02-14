@@ -1,7 +1,12 @@
 <form action="" [formGroup]="form">
-
   <p>
     <input type="text" formControlName="teste" />
-    <button type="button" (click)="close(teste)">Close</button>
   </p>
+  <div
+    class="tooltip"
+    tooltip-title="Eu sou um botão de fechar"
+    tooltip-position="left"
+  >
+    <button type="button" (click)="close(teste)">Close</button>
+  </div>
 </form>

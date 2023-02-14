@@ -3,6 +3,37 @@
     <h1>Modal</h1>
     <button (click)="open('modal-1')">Open Modal 1</button>
     <button (click)="open('modal-2')">Open Modal 2</button>
+
+    <div class="container">
+      <div
+        class="tooltip"
+        tooltip-title="Eu sou um Tooltip na parte superior"
+        tooltip-position="top"
+      >
+        Tooltip em cima
+      </div>
+      <div
+        class="tooltip"
+        tooltip-title="Eu sou um Tooltip na parte esquerda"
+        tooltip-position="left"
+      >
+        Tooltip na esquerda
+      </div>
+      <div
+        class="tooltip"
+        tooltip-title="Eu sou um Tooltip na parte direita"
+        tooltip-position="right"
+      >
+        Tooltip na direita
+      </div>
+      <div
+        class="tooltip"
+        tooltip-title="Eu sou um Tooltip na parte inferior"
+        tooltip-position="bottom"
+      >
+        Tooltip em baixo
+      </div>
+    </div>
   </div>
 
   <app-modal id="modal-1" size="sm">
